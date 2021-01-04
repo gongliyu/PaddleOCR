@@ -255,10 +255,10 @@ class PaddleOCR(predict_system.TextSystem):
         if postprocess_params.verbose:
             print(postprocess_params)
         # download model
-        maybe_download(postprocess_params.det_model_dir, model_urls['det'])
-        maybe_download(postprocess_params.rec_model_dir,
-                       model_urls['rec'][lang]['url'])
-        maybe_download(postprocess_params.cls_model_dir, model_urls['cls'])
+        # maybe_download(postprocess_params.det_model_dir, model_urls['det'])
+        # maybe_download(postprocess_params.rec_model_dir,
+        #                model_urls['rec'][lang]['url'])
+        # maybe_download(postprocess_params.cls_model_dir, model_urls['cls'])
 
         if postprocess_params.det_algorithm not in SUPPORT_DET_MODEL:
             logger.error('det_algorithm must in {}'.format(SUPPORT_DET_MODEL))

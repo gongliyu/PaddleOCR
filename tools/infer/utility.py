@@ -90,16 +90,19 @@ def parse_args():
 def create_predictor(args, mode, logger):
     if mode == "det":
         model_dir = args.det_model_dir
+        _my_suffix = '.det'
     elif mode == 'cls':
         model_dir = args.cls_model_dir
+        _my_suffix = '.cls'
     else:
         model_dir = args.rec_model_dir
+        _my_suffix = '.rec'
 
     if model_dir is None:
         logger.info("not find {} model file path {}".format(mode, model_dir))
         sys.exit(0)
-    model_file_path = model_dir + "/inference.pdmodel"
-    params_file_path = model_dir + "/inference.pdiparams"
+    model_file_path = model_dir + "/inference.pdmodel" + _my_suffix
+    params_file_path = model_dir + "/inference.pdiparams" + _my_suffix
     if not os.path.exists(model_file_path):
         logger.info("not find model file path {}".format(model_file_path))
         sys.exit(0)
