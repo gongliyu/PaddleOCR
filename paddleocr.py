@@ -179,6 +179,9 @@ def parse_args(mMain=True, add_help=True):
         parser.add_argument("--det", type=str2bool, default=True)
         parser.add_argument("--rec", type=str2bool, default=True)
         parser.add_argument("--use_angle_cls", type=str2bool, default=False)
+
+        parser.add_argument('--verbose', dest='verbose', action='store_true')
+        parser.add_argument('--quiet', dest='verbose', action='store_false')
         return parser.parse_args()
     else:
         return argparse.Namespace(
@@ -217,7 +220,8 @@ def parse_args(mMain=True, add_help=True):
             lang='ch',
             det=True,
             rec=True,
-            use_angle_cls=False)
+            use_angle_cls=False,
+            verbose=True)
 
 
 class PaddleOCR(predict_system.TextSystem):
@@ -248,7 +252,8 @@ class PaddleOCR(predict_system.TextSystem):
         if postprocess_params.cls_model_dir is None:
             postprocess_params.cls_model_dir = os.path.join(
                 BASE_DIR, '{}/cls'.format(VERSION))
-        print(postprocess_params)
+        if postprocess_params.verbose:
+            print(postprocess_params)
         # download model
         maybe_download(postprocess_params.det_model_dir, model_urls['det'])
         maybe_download(postprocess_params.rec_model_dir,
