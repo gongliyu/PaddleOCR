@@ -62,6 +62,7 @@ def build_dataloader(config, mode, device, logger):
                     ], "Mode should be Train, Eval or Test."
 
     dataset = eval(module_name)(config, mode, logger)
+    assert len(dataset) > 0, 'Dataset is empty'
     loader_config = config[mode]['loader']
     batch_size = loader_config['batch_size_per_card']
     drop_last = loader_config['drop_last']
