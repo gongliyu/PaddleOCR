@@ -1,16 +1,16 @@
 Global:
-  use_gpu: True
+  use_gpu: true
   epoch_num: 500
   log_smooth_window: 20
   print_batch_step: 10
-  save_model_dir: ./output/rec_en_sc_resnet34
+  save_model_dir: ./output/rec_mv3_small
   save_epoch_step: 3
   # evaluation is run every 5000 iterations after the 4000th iteration
   eval_batch_step: [0, 2000]
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
   pretrained_model:
-  checkpoints:
+  checkpoints: 
   save_inference_dir:
   use_visualdl: True
   infer_img: doc/imgs_words/ch/word_1.jpg
@@ -31,22 +31,24 @@ Optimizer:
     learning_rate: 0.001
   regularizer:
     name: 'L2'
-    factor: 0.00004
+    factor: 0.00001
 
 Architecture:
   model_type: rec
   algorithm: CRNN
   Transform:
   Backbone:
-    name: ResNet
-    layers: 34
+    name: MobileNetV3
+    scale: 0.5
+    model_name: small
+    small_stride: [1, 2, 2, 2]
   Neck:
     name: SequenceEncoder
     encoder_type: rnn
-    hidden_size: 256
+    hidden_size: 48
   Head:
     name: CTCHead
-    fc_decay: 0.00004
+    fc_decay: 0.00001
 
 Loss:
   name: CTCLoss
@@ -62,6 +64,7 @@ Train:
   dataset:
     name: LMDBDateSet
     data_dir: ./data/training
+#    label_file_list: ["./train_data/train_list.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -96,4 +99,4 @@ Eval:
     shuffle: False
     drop_last: False
     batch_size_per_card: 128
-    num_workers: 4
+    num_workers: 8
