@@ -1,0 +1,428 @@
+[2021/01/05 15:45:18] root INFO: Architecture : 
+[2021/01/05 15:45:18] root INFO:     Backbone : 
+[2021/01/05 15:45:18] root INFO:         model_name : small
+[2021/01/05 15:45:18] root INFO:         name : MobileNetV3
+[2021/01/05 15:45:18] root INFO:         scale : 0.5
+[2021/01/05 15:45:18] root INFO:         small_stride : [1, 2, 2, 2]
+[2021/01/05 15:45:18] root INFO:     Head : 
+[2021/01/05 15:45:18] root INFO:         fc_decay : 1e-05
+[2021/01/05 15:45:18] root INFO:         name : CTCHead
+[2021/01/05 15:45:18] root INFO:     Neck : 
+[2021/01/05 15:45:18] root INFO:         encoder_type : rnn
+[2021/01/05 15:45:18] root INFO:         hidden_size : 48
+[2021/01/05 15:45:18] root INFO:         name : SequenceEncoder
+[2021/01/05 15:45:18] root INFO:     Transform : None
+[2021/01/05 15:45:18] root INFO:     algorithm : CRNN
+[2021/01/05 15:45:18] root INFO:     model_type : rec
+[2021/01/05 15:45:18] root INFO: Eval : 
+[2021/01/05 15:45:18] root INFO:     dataset : 
+[2021/01/05 15:45:18] root INFO:         data_dir : ./data/evaluation/IIIT5k_3000
+[2021/01/05 15:45:18] root INFO:         name : LMDBDateSet
+[2021/01/05 15:45:18] root INFO:         transforms : 
+[2021/01/05 15:45:18] root INFO:             DecodeImage : 
+[2021/01/05 15:45:18] root INFO:                 channel_first : False
+[2021/01/05 15:45:18] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:18] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:18] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:18] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:18] root INFO:             KeepKeys : 
+[2021/01/05 15:45:18] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:18] root INFO:     loader : 
+[2021/01/05 15:45:18] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:18] root INFO:         drop_last : False
+[2021/01/05 15:45:18] root INFO:         num_workers : 8
+[2021/01/05 15:45:18] root INFO:         shuffle : False
+[2021/01/05 15:45:18] root INFO: Global : 
+[2021/01/05 15:45:18] root INFO:     cal_metric_during_train : True
+[2021/01/05 15:45:18] root INFO:     character_dict_path : ppocr/utils/dict/en_dict.txt
+[2021/01/05 15:45:18] root INFO:     character_type : ch
+[2021/01/05 15:45:18] root INFO:     checkpoints : ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:18] root INFO:     debug : False
+[2021/01/05 15:45:18] root INFO:     distributed : False
+[2021/01/05 15:45:18] root INFO:     epoch_num : 500
+[2021/01/05 15:45:18] root INFO:     eval_batch_step : [0, 2000]
+[2021/01/05 15:45:18] root INFO:     infer_img : None
+[2021/01/05 15:45:18] root INFO:     infer_mode : False
+[2021/01/05 15:45:18] root INFO:     log_smooth_window : 20
+[2021/01/05 15:45:18] root INFO:     max_text_length : 25
+[2021/01/05 15:45:18] root INFO:     pretrained_model : None
+[2021/01/05 15:45:18] root INFO:     print_batch_step : 10
+[2021/01/05 15:45:18] root INFO:     save_epoch_step : 3
+[2021/01/05 15:45:18] root INFO:     save_inference_dir : None
+[2021/01/05 15:45:18] root INFO:     save_model_dir : ./output/rec_en_number_lite
+[2021/01/05 15:45:18] root INFO:     use_gpu : True
+[2021/01/05 15:45:18] root INFO:     use_space_char : False
+[2021/01/05 15:45:18] root INFO:     use_visualdl : False
+[2021/01/05 15:45:18] root INFO: Loss : 
+[2021/01/05 15:45:18] root INFO:     name : CTCLoss
+[2021/01/05 15:45:18] root INFO: Metric : 
+[2021/01/05 15:45:18] root INFO:     main_indicator : acc
+[2021/01/05 15:45:18] root INFO:     name : RecMetric
+[2021/01/05 15:45:18] root INFO: Optimizer : 
+[2021/01/05 15:45:18] root INFO:     beta1 : 0.9
+[2021/01/05 15:45:18] root INFO:     beta2 : 0.999
+[2021/01/05 15:45:18] root INFO:     lr : 
+[2021/01/05 15:45:18] root INFO:         learning_rate : 0.001
+[2021/01/05 15:45:18] root INFO:         name : Cosine
+[2021/01/05 15:45:18] root INFO:     name : Adam
+[2021/01/05 15:45:18] root INFO:     regularizer : 
+[2021/01/05 15:45:18] root INFO:         factor : 1e-05
+[2021/01/05 15:45:18] root INFO:         name : L2
+[2021/01/05 15:45:18] root INFO: PostProcess : 
+[2021/01/05 15:45:18] root INFO:     name : CTCLabelDecode
+[2021/01/05 15:45:18] root INFO: Train : 
+[2021/01/05 15:45:18] root INFO:     dataset : 
+[2021/01/05 15:45:18] root INFO:         data_dir : ./train_data/
+[2021/01/05 15:45:18] root INFO:         label_file_list : ['./train_data/train_list.txt']
+[2021/01/05 15:45:18] root INFO:         name : SimpleDataSet
+[2021/01/05 15:45:18] root INFO:         transforms : 
+[2021/01/05 15:45:18] root INFO:             DecodeImage : 
+[2021/01/05 15:45:18] root INFO:                 channel_first : False
+[2021/01/05 15:45:18] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:18] root INFO:             RecAug : None
+[2021/01/05 15:45:18] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:18] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:18] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:18] root INFO:             KeepKeys : 
+[2021/01/05 15:45:18] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:18] root INFO:     loader : 
+[2021/01/05 15:45:18] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:18] root INFO:         drop_last : True
+[2021/01/05 15:45:18] root INFO:         num_workers : 8
+[2021/01/05 15:45:18] root INFO:         shuffle : True
+[2021/01/05 15:45:18] root INFO: train with paddle 2.0.0-rc1 and device CUDAPlace(0)
+########### data_dir=./data/evaluation/IIIT5k_3000
+####### dir_path=./data/evaluation/IIIT5k_3000/, dirnames=[], filenames=['data.mdb', 'lock.mdb']
+[2021/01/05 15:45:18] root INFO: Initialize indexs of datasets:./data/evaluation/IIIT5k_3000
+[2021/01/05 15:45:21] root INFO: resume from ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:21] root INFO: metric in ckpt ***************
+[2021/01/05 15:45:21] root INFO: acc:0.6743183889947791
+[2021/01/05 15:45:21] root INFO: norm_edit_dis:0.5426139583216605
+[2021/01/05 15:45:21] root INFO: fps:1007.3113170151394
+[2021/01/05 15:45:21] root INFO: best_epoch:9
+[2021/01/05 15:45:21] root INFO: start_epoch:10
+[2021/01/05 15:45:24] root INFO: metric eval ***************
+[2021/01/05 15:45:24] root INFO: acc:0.7236666666666667
+[2021/01/05 15:45:24] root INFO: norm_edit_dis:0.8969415310137682
+[2021/01/05 15:45:24] root INFO: fps:2388.03268987773
+[2021/01/05 15:45:28] root INFO: Architecture : 
+[2021/01/05 15:45:28] root INFO:     Backbone : 
+[2021/01/05 15:45:28] root INFO:         model_name : small
+[2021/01/05 15:45:28] root INFO:         name : MobileNetV3
+[2021/01/05 15:45:28] root INFO:         scale : 0.5
+[2021/01/05 15:45:28] root INFO:         small_stride : [1, 2, 2, 2]
+[2021/01/05 15:45:28] root INFO:     Head : 
+[2021/01/05 15:45:28] root INFO:         fc_decay : 1e-05
+[2021/01/05 15:45:28] root INFO:         name : CTCHead
+[2021/01/05 15:45:28] root INFO:     Neck : 
+[2021/01/05 15:45:28] root INFO:         encoder_type : rnn
+[2021/01/05 15:45:28] root INFO:         hidden_size : 48
+[2021/01/05 15:45:28] root INFO:         name : SequenceEncoder
+[2021/01/05 15:45:28] root INFO:     Transform : None
+[2021/01/05 15:45:28] root INFO:     algorithm : CRNN
+[2021/01/05 15:45:28] root INFO:     model_type : rec
+[2021/01/05 15:45:28] root INFO: Eval : 
+[2021/01/05 15:45:28] root INFO:     dataset : 
+[2021/01/05 15:45:28] root INFO:         data_dir : ./data/evaluation/SVT
+[2021/01/05 15:45:28] root INFO:         name : LMDBDateSet
+[2021/01/05 15:45:28] root INFO:         transforms : 
+[2021/01/05 15:45:28] root INFO:             DecodeImage : 
+[2021/01/05 15:45:28] root INFO:                 channel_first : False
+[2021/01/05 15:45:28] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:28] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:28] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:28] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:28] root INFO:             KeepKeys : 
+[2021/01/05 15:45:28] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:28] root INFO:     loader : 
+[2021/01/05 15:45:28] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:28] root INFO:         drop_last : False
+[2021/01/05 15:45:28] root INFO:         num_workers : 8
+[2021/01/05 15:45:28] root INFO:         shuffle : False
+[2021/01/05 15:45:28] root INFO: Global : 
+[2021/01/05 15:45:28] root INFO:     cal_metric_during_train : True
+[2021/01/05 15:45:28] root INFO:     character_dict_path : ppocr/utils/dict/en_dict.txt
+[2021/01/05 15:45:28] root INFO:     character_type : ch
+[2021/01/05 15:45:28] root INFO:     checkpoints : ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:28] root INFO:     debug : False
+[2021/01/05 15:45:28] root INFO:     distributed : False
+[2021/01/05 15:45:28] root INFO:     epoch_num : 500
+[2021/01/05 15:45:28] root INFO:     eval_batch_step : [0, 2000]
+[2021/01/05 15:45:28] root INFO:     infer_img : None
+[2021/01/05 15:45:28] root INFO:     infer_mode : False
+[2021/01/05 15:45:28] root INFO:     log_smooth_window : 20
+[2021/01/05 15:45:28] root INFO:     max_text_length : 25
+[2021/01/05 15:45:28] root INFO:     pretrained_model : None
+[2021/01/05 15:45:28] root INFO:     print_batch_step : 10
+[2021/01/05 15:45:28] root INFO:     save_epoch_step : 3
+[2021/01/05 15:45:28] root INFO:     save_inference_dir : None
+[2021/01/05 15:45:28] root INFO:     save_model_dir : ./output/rec_en_number_lite
+[2021/01/05 15:45:28] root INFO:     use_gpu : True
+[2021/01/05 15:45:28] root INFO:     use_space_char : False
+[2021/01/05 15:45:28] root INFO:     use_visualdl : False
+[2021/01/05 15:45:28] root INFO: Loss : 
+[2021/01/05 15:45:28] root INFO:     name : CTCLoss
+[2021/01/05 15:45:28] root INFO: Metric : 
+[2021/01/05 15:45:28] root INFO:     main_indicator : acc
+[2021/01/05 15:45:28] root INFO:     name : RecMetric
+[2021/01/05 15:45:28] root INFO: Optimizer : 
+[2021/01/05 15:45:28] root INFO:     beta1 : 0.9
+[2021/01/05 15:45:28] root INFO:     beta2 : 0.999
+[2021/01/05 15:45:28] root INFO:     lr : 
+[2021/01/05 15:45:28] root INFO:         learning_rate : 0.001
+[2021/01/05 15:45:28] root INFO:         name : Cosine
+[2021/01/05 15:45:28] root INFO:     name : Adam
+[2021/01/05 15:45:28] root INFO:     regularizer : 
+[2021/01/05 15:45:28] root INFO:         factor : 1e-05
+[2021/01/05 15:45:28] root INFO:         name : L2
+[2021/01/05 15:45:28] root INFO: PostProcess : 
+[2021/01/05 15:45:28] root INFO:     name : CTCLabelDecode
+[2021/01/05 15:45:28] root INFO: Train : 
+[2021/01/05 15:45:28] root INFO:     dataset : 
+[2021/01/05 15:45:28] root INFO:         data_dir : ./train_data/
+[2021/01/05 15:45:28] root INFO:         label_file_list : ['./train_data/train_list.txt']
+[2021/01/05 15:45:28] root INFO:         name : SimpleDataSet
+[2021/01/05 15:45:28] root INFO:         transforms : 
+[2021/01/05 15:45:28] root INFO:             DecodeImage : 
+[2021/01/05 15:45:28] root INFO:                 channel_first : False
+[2021/01/05 15:45:28] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:28] root INFO:             RecAug : None
+[2021/01/05 15:45:28] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:28] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:28] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:28] root INFO:             KeepKeys : 
+[2021/01/05 15:45:28] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:28] root INFO:     loader : 
+[2021/01/05 15:45:28] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:28] root INFO:         drop_last : True
+[2021/01/05 15:45:28] root INFO:         num_workers : 8
+[2021/01/05 15:45:28] root INFO:         shuffle : True
+[2021/01/05 15:45:28] root INFO: train with paddle 2.0.0-rc1 and device CUDAPlace(0)
+########### data_dir=./data/evaluation/SVT
+####### dir_path=./data/evaluation/SVT/, dirnames=[], filenames=['data.mdb', 'lock.mdb']
+[2021/01/05 15:45:28] root INFO: Initialize indexs of datasets:./data/evaluation/SVT
+[2021/01/05 15:45:32] root INFO: resume from ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:32] root INFO: metric in ckpt ***************
+[2021/01/05 15:45:32] root INFO: acc:0.6743183889947791
+[2021/01/05 15:45:32] root INFO: norm_edit_dis:0.5426139583216605
+[2021/01/05 15:45:32] root INFO: fps:1007.3113170151394
+[2021/01/05 15:45:32] root INFO: best_epoch:9
+[2021/01/05 15:45:32] root INFO: start_epoch:10
+[2021/01/05 15:45:33] root INFO: metric eval ***************
+[2021/01/05 15:45:33] root INFO: acc:0.7156105100463679
+[2021/01/05 15:45:33] root INFO: norm_edit_dis:0.8836461323323765
+[2021/01/05 15:45:33] root INFO: fps:2727.9546110697843
+[2021/01/05 15:45:37] root INFO: Architecture : 
+[2021/01/05 15:45:37] root INFO:     Backbone : 
+[2021/01/05 15:45:37] root INFO:         model_name : small
+[2021/01/05 15:45:37] root INFO:         name : MobileNetV3
+[2021/01/05 15:45:37] root INFO:         scale : 0.5
+[2021/01/05 15:45:37] root INFO:         small_stride : [1, 2, 2, 2]
+[2021/01/05 15:45:37] root INFO:     Head : 
+[2021/01/05 15:45:37] root INFO:         fc_decay : 1e-05
+[2021/01/05 15:45:37] root INFO:         name : CTCHead
+[2021/01/05 15:45:37] root INFO:     Neck : 
+[2021/01/05 15:45:37] root INFO:         encoder_type : rnn
+[2021/01/05 15:45:37] root INFO:         hidden_size : 48
+[2021/01/05 15:45:37] root INFO:         name : SequenceEncoder
+[2021/01/05 15:45:37] root INFO:     Transform : None
+[2021/01/05 15:45:37] root INFO:     algorithm : CRNN
+[2021/01/05 15:45:37] root INFO:     model_type : rec
+[2021/01/05 15:45:37] root INFO: Eval : 
+[2021/01/05 15:45:37] root INFO:     dataset : 
+[2021/01/05 15:45:37] root INFO:         data_dir : ./data/evaluation/IC03_867
+[2021/01/05 15:45:37] root INFO:         name : LMDBDateSet
+[2021/01/05 15:45:37] root INFO:         transforms : 
+[2021/01/05 15:45:37] root INFO:             DecodeImage : 
+[2021/01/05 15:45:37] root INFO:                 channel_first : False
+[2021/01/05 15:45:37] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:37] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:37] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:37] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:37] root INFO:             KeepKeys : 
+[2021/01/05 15:45:37] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:37] root INFO:     loader : 
+[2021/01/05 15:45:37] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:37] root INFO:         drop_last : False
+[2021/01/05 15:45:37] root INFO:         num_workers : 8
+[2021/01/05 15:45:37] root INFO:         shuffle : False
+[2021/01/05 15:45:37] root INFO: Global : 
+[2021/01/05 15:45:37] root INFO:     cal_metric_during_train : True
+[2021/01/05 15:45:37] root INFO:     character_dict_path : ppocr/utils/dict/en_dict.txt
+[2021/01/05 15:45:37] root INFO:     character_type : ch
+[2021/01/05 15:45:37] root INFO:     checkpoints : ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:37] root INFO:     debug : False
+[2021/01/05 15:45:37] root INFO:     distributed : False
+[2021/01/05 15:45:37] root INFO:     epoch_num : 500
+[2021/01/05 15:45:37] root INFO:     eval_batch_step : [0, 2000]
+[2021/01/05 15:45:37] root INFO:     infer_img : None
+[2021/01/05 15:45:37] root INFO:     infer_mode : False
+[2021/01/05 15:45:37] root INFO:     log_smooth_window : 20
+[2021/01/05 15:45:37] root INFO:     max_text_length : 25
+[2021/01/05 15:45:37] root INFO:     pretrained_model : None
+[2021/01/05 15:45:37] root INFO:     print_batch_step : 10
+[2021/01/05 15:45:37] root INFO:     save_epoch_step : 3
+[2021/01/05 15:45:37] root INFO:     save_inference_dir : None
+[2021/01/05 15:45:37] root INFO:     save_model_dir : ./output/rec_en_number_lite
+[2021/01/05 15:45:37] root INFO:     use_gpu : True
+[2021/01/05 15:45:37] root INFO:     use_space_char : False
+[2021/01/05 15:45:37] root INFO:     use_visualdl : False
+[2021/01/05 15:45:37] root INFO: Loss : 
+[2021/01/05 15:45:37] root INFO:     name : CTCLoss
+[2021/01/05 15:45:37] root INFO: Metric : 
+[2021/01/05 15:45:37] root INFO:     main_indicator : acc
+[2021/01/05 15:45:37] root INFO:     name : RecMetric
+[2021/01/05 15:45:37] root INFO: Optimizer : 
+[2021/01/05 15:45:37] root INFO:     beta1 : 0.9
+[2021/01/05 15:45:37] root INFO:     beta2 : 0.999
+[2021/01/05 15:45:37] root INFO:     lr : 
+[2021/01/05 15:45:37] root INFO:         learning_rate : 0.001
+[2021/01/05 15:45:37] root INFO:         name : Cosine
+[2021/01/05 15:45:37] root INFO:     name : Adam
+[2021/01/05 15:45:37] root INFO:     regularizer : 
+[2021/01/05 15:45:37] root INFO:         factor : 1e-05
+[2021/01/05 15:45:37] root INFO:         name : L2
+[2021/01/05 15:45:37] root INFO: PostProcess : 
+[2021/01/05 15:45:37] root INFO:     name : CTCLabelDecode
+[2021/01/05 15:45:37] root INFO: Train : 
+[2021/01/05 15:45:37] root INFO:     dataset : 
+[2021/01/05 15:45:37] root INFO:         data_dir : ./train_data/
+[2021/01/05 15:45:37] root INFO:         label_file_list : ['./train_data/train_list.txt']
+[2021/01/05 15:45:37] root INFO:         name : SimpleDataSet
+[2021/01/05 15:45:37] root INFO:         transforms : 
+[2021/01/05 15:45:37] root INFO:             DecodeImage : 
+[2021/01/05 15:45:37] root INFO:                 channel_first : False
+[2021/01/05 15:45:37] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:37] root INFO:             RecAug : None
+[2021/01/05 15:45:37] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:37] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:37] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:37] root INFO:             KeepKeys : 
+[2021/01/05 15:45:37] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:37] root INFO:     loader : 
+[2021/01/05 15:45:37] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:37] root INFO:         drop_last : True
+[2021/01/05 15:45:37] root INFO:         num_workers : 8
+[2021/01/05 15:45:37] root INFO:         shuffle : True
+[2021/01/05 15:45:37] root INFO: train with paddle 2.0.0-rc1 and device CUDAPlace(0)
+########### data_dir=./data/evaluation/IC03_867
+####### dir_path=./data/evaluation/IC03_867/, dirnames=[], filenames=['data.mdb', 'lock.mdb']
+[2021/01/05 15:45:37] root INFO: Initialize indexs of datasets:./data/evaluation/IC03_867
+[2021/01/05 15:45:40] root INFO: resume from ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:40] root INFO: metric in ckpt ***************
+[2021/01/05 15:45:40] root INFO: acc:0.6743183889947791
+[2021/01/05 15:45:40] root INFO: norm_edit_dis:0.5426139583216605
+[2021/01/05 15:45:40] root INFO: fps:1007.3113170151394
+[2021/01/05 15:45:40] root INFO: best_epoch:9
+[2021/01/05 15:45:40] root INFO: start_epoch:10
+[2021/01/05 15:45:42] root INFO: metric eval ***************
+[2021/01/05 15:45:42] root INFO: acc:0.8465974625144176
+[2021/01/05 15:45:42] root INFO: norm_edit_dis:0.9389144816480457
+[2021/01/05 15:45:42] root INFO: fps:2744.2010589037873
+[2021/01/05 15:45:45] root INFO: Architecture : 
+[2021/01/05 15:45:45] root INFO:     Backbone : 
+[2021/01/05 15:45:45] root INFO:         model_name : small
+[2021/01/05 15:45:45] root INFO:         name : MobileNetV3
+[2021/01/05 15:45:45] root INFO:         scale : 0.5
+[2021/01/05 15:45:45] root INFO:         small_stride : [1, 2, 2, 2]
+[2021/01/05 15:45:45] root INFO:     Head : 
+[2021/01/05 15:45:45] root INFO:         fc_decay : 1e-05
+[2021/01/05 15:45:45] root INFO:         name : CTCHead
+[2021/01/05 15:45:45] root INFO:     Neck : 
+[2021/01/05 15:45:45] root INFO:         encoder_type : rnn
+[2021/01/05 15:45:45] root INFO:         hidden_size : 48
+[2021/01/05 15:45:45] root INFO:         name : SequenceEncoder
+[2021/01/05 15:45:45] root INFO:     Transform : None
+[2021/01/05 15:45:45] root INFO:     algorithm : CRNN
+[2021/01/05 15:45:45] root INFO:     model_type : rec
+[2021/01/05 15:45:45] root INFO: Eval : 
+[2021/01/05 15:45:45] root INFO:     dataset : 
+[2021/01/05 15:45:45] root INFO:         data_dir : ./data/evaluation/IC13_1015
+[2021/01/05 15:45:45] root INFO:         name : LMDBDateSet
+[2021/01/05 15:45:45] root INFO:         transforms : 
+[2021/01/05 15:45:45] root INFO:             DecodeImage : 
+[2021/01/05 15:45:45] root INFO:                 channel_first : False
+[2021/01/05 15:45:45] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:45] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:45] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:45] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:45] root INFO:             KeepKeys : 
+[2021/01/05 15:45:45] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:45] root INFO:     loader : 
+[2021/01/05 15:45:45] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:45] root INFO:         drop_last : False
+[2021/01/05 15:45:45] root INFO:         num_workers : 8
+[2021/01/05 15:45:45] root INFO:         shuffle : False
+[2021/01/05 15:45:45] root INFO: Global : 
+[2021/01/05 15:45:45] root INFO:     cal_metric_during_train : True
+[2021/01/05 15:45:45] root INFO:     character_dict_path : ppocr/utils/dict/en_dict.txt
+[2021/01/05 15:45:45] root INFO:     character_type : ch
+[2021/01/05 15:45:45] root INFO:     checkpoints : ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:45] root INFO:     debug : False
+[2021/01/05 15:45:45] root INFO:     distributed : False
+[2021/01/05 15:45:45] root INFO:     epoch_num : 500
+[2021/01/05 15:45:45] root INFO:     eval_batch_step : [0, 2000]
+[2021/01/05 15:45:45] root INFO:     infer_img : None
+[2021/01/05 15:45:45] root INFO:     infer_mode : False
+[2021/01/05 15:45:45] root INFO:     log_smooth_window : 20
+[2021/01/05 15:45:45] root INFO:     max_text_length : 25
+[2021/01/05 15:45:45] root INFO:     pretrained_model : None
+[2021/01/05 15:45:45] root INFO:     print_batch_step : 10
+[2021/01/05 15:45:45] root INFO:     save_epoch_step : 3
+[2021/01/05 15:45:45] root INFO:     save_inference_dir : None
+[2021/01/05 15:45:45] root INFO:     save_model_dir : ./output/rec_en_number_lite
+[2021/01/05 15:45:45] root INFO:     use_gpu : True
+[2021/01/05 15:45:45] root INFO:     use_space_char : False
+[2021/01/05 15:45:45] root INFO:     use_visualdl : False
+[2021/01/05 15:45:45] root INFO: Loss : 
+[2021/01/05 15:45:45] root INFO:     name : CTCLoss
+[2021/01/05 15:45:45] root INFO: Metric : 
+[2021/01/05 15:45:45] root INFO:     main_indicator : acc
+[2021/01/05 15:45:45] root INFO:     name : RecMetric
+[2021/01/05 15:45:45] root INFO: Optimizer : 
+[2021/01/05 15:45:45] root INFO:     beta1 : 0.9
+[2021/01/05 15:45:45] root INFO:     beta2 : 0.999
+[2021/01/05 15:45:45] root INFO:     lr : 
+[2021/01/05 15:45:45] root INFO:         learning_rate : 0.001
+[2021/01/05 15:45:45] root INFO:         name : Cosine
+[2021/01/05 15:45:45] root INFO:     name : Adam
+[2021/01/05 15:45:45] root INFO:     regularizer : 
+[2021/01/05 15:45:45] root INFO:         factor : 1e-05
+[2021/01/05 15:45:45] root INFO:         name : L2
+[2021/01/05 15:45:45] root INFO: PostProcess : 
+[2021/01/05 15:45:45] root INFO:     name : CTCLabelDecode
+[2021/01/05 15:45:45] root INFO: Train : 
+[2021/01/05 15:45:45] root INFO:     dataset : 
+[2021/01/05 15:45:45] root INFO:         data_dir : ./train_data/
+[2021/01/05 15:45:45] root INFO:         label_file_list : ['./train_data/train_list.txt']
+[2021/01/05 15:45:45] root INFO:         name : SimpleDataSet
+[2021/01/05 15:45:45] root INFO:         transforms : 
+[2021/01/05 15:45:45] root INFO:             DecodeImage : 
+[2021/01/05 15:45:45] root INFO:                 channel_first : False
+[2021/01/05 15:45:45] root INFO:                 img_mode : BGR
+[2021/01/05 15:45:45] root INFO:             RecAug : None
+[2021/01/05 15:45:45] root INFO:             CTCLabelEncode : None
+[2021/01/05 15:45:45] root INFO:             RecResizeImg : 
+[2021/01/05 15:45:45] root INFO:                 image_shape : [3, 32, 320]
+[2021/01/05 15:45:45] root INFO:             KeepKeys : 
+[2021/01/05 15:45:45] root INFO:                 keep_keys : ['image', 'label', 'length']
+[2021/01/05 15:45:45] root INFO:     loader : 
+[2021/01/05 15:45:45] root INFO:         batch_size_per_card : 256
+[2021/01/05 15:45:45] root INFO:         drop_last : True
+[2021/01/05 15:45:45] root INFO:         num_workers : 8
+[2021/01/05 15:45:45] root INFO:         shuffle : True
+[2021/01/05 15:45:45] root INFO: train with paddle 2.0.0-rc1 and device CUDAPlace(0)
+########### data_dir=./data/evaluation/IC13_1015
+####### dir_path=./data/evaluation/IC13_1015/, dirnames=[], filenames=['data.mdb', 'lock.mdb']
+[2021/01/05 15:45:45] root INFO: Initialize indexs of datasets:./data/evaluation/IC13_1015
+[2021/01/05 15:45:49] root INFO: resume from ./pre-trained/en_number_mobile_v2.0_rec_train/best_accuracy
+[2021/01/05 15:45:49] root INFO: metric in ckpt ***************
+[2021/01/05 15:45:49] root INFO: acc:0.6743183889947791
+[2021/01/05 15:45:49] root INFO: norm_edit_dis:0.5426139583216605
+[2021/01/05 15:45:49] root INFO: fps:1007.3113170151394
+[2021/01/05 15:45:49] root INFO: best_epoch:9
+[2021/01/05 15:45:49] root INFO: start_epoch:10
+[2021/01/05 15:45:51] root INFO: metric eval ***************
+[2021/01/05 15:45:51] root INFO: acc:0.7911330049261084
+[2021/01/05 15:45:51] root INFO: norm_edit_dis:0.8952396153381376
+[2021/01/05 15:45:51] root INFO: fps:2846.7257380411224

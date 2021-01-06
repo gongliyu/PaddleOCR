@@ -1,5 +1,5 @@
-# for paddle.__version__ >= 2.0rc1
-python3 -m paddle.distributed.launch --gpus '0,1,2,3,4,5,6,7'  tools/train.py -c configs/rec/rec_mv3_none_bilstm_ctc.yml
+#!/usr/bin/env bash
 
-# for paddle.__version__ < 2.0rc1
-# python3 -m paddle.distributed.launch --selected_gpus '0,1,2,3,4,5,6,7'  tools/train.py -c configs/rec/rec_mv3_none_bilstm_ctc.yml
+# python3 -m paddle.distributed.launch --gpus '0,1,2,3'  tools/train.py -c configs/rec/rec_icdar15_train.yml
+
+python3 tools/train.py -c configs/rec/ch_ppocr_v2.0/rec_en_sc_common_train_v2.0.yml 

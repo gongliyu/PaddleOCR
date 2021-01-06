@@ -22,6 +22,8 @@ class RecMetric(object):
 
     def __call__(self, pred_label, *args, **kwargs):
         preds, labels = pred_label
+        preds = [(x.upper(), y) for x, y in preds]
+        labels = [(x.upper(), y) for x , y in labels]
         correct_num = 0
         all_num = 0
         norm_edit_dis = 0.0
