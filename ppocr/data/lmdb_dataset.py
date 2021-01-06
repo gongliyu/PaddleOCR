@@ -13,6 +13,7 @@
 # limitations under the License.
 import numpy as np
 import os
+import io
 from paddle.io import Dataset
 import lmdb
 import cv2
@@ -89,7 +90,6 @@ class LMDBDateSet(Dataset):
         return imgori
 
     def get_lmdb_sample_info(self, txn, index):
-        print(f'index={index}')
         label_key = 'label-%09d'.encode() % index
         label = txn.get(label_key)
         if label is None:
@@ -97,7 +97,6 @@ class LMDBDateSet(Dataset):
         label = label.decode('utf-8')
         img_key = 'image-%09d'.encode() % index
         imgbuf = txn.get(img_key)
-        print(f'label={label}')
         return imgbuf, label
 
     def __getitem__(self, idx):

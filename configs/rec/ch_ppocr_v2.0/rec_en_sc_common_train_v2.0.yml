@@ -1,5 +1,5 @@
 Global:
-  use_gpu: true
+  use_gpu: false
   epoch_num: 500
   log_smooth_window: 20
   print_batch_step: 10
@@ -61,7 +61,7 @@ Metric:
 Train:
   dataset:
     name: LMDBDateSet
-    data_dir: ./data/ST_spe
+    data_dir: ./data/training
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -73,10 +73,10 @@ Train:
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
-    shuffle: False
-    batch_size_per_card: 1
-    drop_last: False
-    num_workers: 1
+    shuffle: True
+    batch_size_per_card: 128
+    drop_last: True
+    num_workers: 8
 
 Eval:
   dataset:
@@ -95,5 +95,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 100
+    batch_size_per_card: 128
     num_workers: 8
