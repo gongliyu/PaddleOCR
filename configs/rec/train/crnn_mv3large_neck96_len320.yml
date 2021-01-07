@@ -1,19 +1,19 @@
 Global:
   use_gpu: true
-  epoch_num: 500
+  epoch_num: 72
   log_smooth_window: 20
   print_batch_step: 10
-  save_model_dir: ./output/rec_mv3_small
+  save_model_dir: ./output/rec/train/crnn_mv2large_neck96_len320
   save_epoch_step: 3
-  # evaluation is run every 5000 iterations after the 4000th iteration
+  # evaluation is run every 2000 iterations
   eval_batch_step: [0, 2000]
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
   pretrained_model:
-  checkpoints: 
+  checkpoints:
   save_inference_dir:
   use_visualdl: True
-  infer_img: doc/imgs_words/ch/word_1.jpg
+  infer_img: doc/imgs_words_en/word_10.png
   # for data or label process
   character_dict_path: ppocr/utils/dict/en_sc.txt
   character_type: ch
@@ -21,17 +21,15 @@ Global:
   infer_mode: False
   use_space_char: True
 
-
 Optimizer:
   name: Adam
   beta1: 0.9
   beta2: 0.999
   lr:
-    name: Cosine
-    learning_rate: 0.001
+    learning_rate: 0.0005
   regularizer:
     name: 'L2'
-    factor: 0.00001
+    factor: 0
 
 Architecture:
   model_type: rec
@@ -40,15 +38,14 @@ Architecture:
   Backbone:
     name: MobileNetV3
     scale: 0.5
-    model_name: small
-    small_stride: [1, 2, 2, 2]
+    model_name: large
   Neck:
     name: SequenceEncoder
     encoder_type: rnn
-    hidden_size: 48
+    hidden_size: 96
   Head:
     name: CTCHead
-    fc_decay: 0.00001
+    fc_decay: 0
 
 Loss:
   name: CTCLoss
@@ -64,20 +61,18 @@ Train:
   dataset:
     name: LMDBDateSet
     data_dir: ./data/training
-#    label_file_list: ["./train_data/train_list.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
           channel_first: False
-      - RecAug: 
       - CTCLabelEncode: # Class handling label
       - RecResizeImg:
           image_shape: [3, 32, 320]
       - KeepKeys:
           keep_keys: ['image', 'label', 'length'] # dataloader will return list in this order
   loader:
-    shuffle: True
-    batch_size_per_card: 128
+    shuffle: False
+    batch_size_per_card: 256
     drop_last: True
     num_workers: 8
 
@@ -85,7 +80,6 @@ Eval:
   dataset:
     name: LMDBDateSet
     data_dir: ./data/validation
-#    label_file_list: ["./train_data/val_list.txt"]
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -98,5 +92,5 @@ Eval:
   loader:
     shuffle: False
     drop_last: False
-    batch_size_per_card: 128
-    num_workers: 8
+    batch_size_per_card: 256
+    num_workers: 4
