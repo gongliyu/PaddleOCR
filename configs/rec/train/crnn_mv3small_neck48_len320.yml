@@ -1,16 +1,16 @@
 Global:
-  use_gpu: false
+  use_gpu: true
   epoch_num: 500
   log_smooth_window: 20
-  print_batch_step: 10
-  save_model_dir: ./output/rec/train/crnn_mv3small_neck48_len300
+  print_batch_step: 1000
+  save_model_dir: ./output/rec/train/crnn_mv3small_neck48_len320
   save_epoch_step: 3
   # evaluation is run every 5000 iterations after the 4000th iteration
   eval_batch_step: [0, 2000]
   # if pretrained_model is saved in static mode, load_static_weights must set to True
   cal_metric_during_train: True
   pretrained_model:
-  checkpoints: 
+  checkpoints:
   save_inference_dir:
   use_visualdl: True
   infer_img: doc/imgs_words/ch/word_1.jpg
@@ -63,7 +63,7 @@ Metric:
 Train:
   dataset:
     name: LMDBDateSet
-    data_dir: ./data/training/ICDAR-2019
+    data_dir: ./data/training
     transforms:
       - DecodeImage: # load image
           img_mode: BGR
@@ -83,7 +83,7 @@ Train:
 Eval:
   dataset:
     name: LMDBDateSet
-    data_dir: ./evaluation/IIIT5k_3000
+    data_dir: ./data/validation
     label_file_list: ["./train_data/val_list.txt"]
     transforms:
       - DecodeImage: # load image

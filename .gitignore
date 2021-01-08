@@ -9,6 +9,7 @@ __pycache__/
 
 slurm-*
 data
+ckpt/
 data/
 pre-trained/
 inference/
